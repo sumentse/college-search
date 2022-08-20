@@ -1,5 +1,7 @@
 import { useState } from "react";
 import useQuerySchools from "hooks/queries/useQuerySchools";
+import MapIcon from '@mui/icons-material/Map';
+
 import {
   InputBase,
   LinearProgress,
@@ -64,6 +66,7 @@ const CollegeSearch = () => {
     <Box>
       <Container maxWidth="sm" sx={{ mt: 12 }}>
         <Paper sx={{ display: "flex" }}>
+          <MapIcon color="primary" sx={{m:1}} />
           <InputBase
             autoFocus
             placeholder="search schools"
@@ -91,10 +94,10 @@ const CollegeSearch = () => {
             onLoad={handleOnLoad}
             onClick={() => setActiveMarker(null)}
             mapContainerStyle={{ width: "100%", height: "450px" }}
-            {...(schools?.result?.length === 0 && { center, zoom: 2 })}
+            {...(schools?.result?.length === 0 && { center, zoom: 10 })}
           >
             {schools?.results
-              ?.filter(({lat, lng}) => lat && lng)
+              ?.filter(({ lat, lng }) => lat && lng)
               .map(({ id, lat, lng, name }) => {
                 return (
                   <Marker
